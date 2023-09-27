@@ -52,7 +52,7 @@ const productAttributes: ProductAttribute[] = [
   { label: "Instagramabilité", rating: 5 },
 ];
 
-export default async function ProductPage({ params }: NextPageProps<Props>) {
+export default function ProductPage({ params }: NextPageProps<Props>) {
   const lines = useStore((state) => state.lines);
 
   /*useEffect(() => {
@@ -107,7 +107,7 @@ export default async function ProductPage({ params }: NextPageProps<Props>) {
               <p className="!my-0 text-xl">
                 <FormattedPrice price={product.price} />
               </p>
-              <Button variant={"primary"}>Ajouter au panier</Button>
+              <Button variant={"primary"} onClick={() => addLine(product)}>Ajouter au panier</Button>
             </div>
           </div>
 

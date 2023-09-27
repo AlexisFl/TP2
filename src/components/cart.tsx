@@ -20,24 +20,7 @@ const Cart = () => {
     };
 
     return (
-        <SectionContainer
-            className="py-36"
-            wrapperClassName="flex flex-col lg:flex-row gap-24"
-        >
-            {/* Produits */}
-            <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 flex-1">
-                {products.map((product) => (
-                    <ProductCardLayout
-                        key={product.id}
-                        product={product}
-                        button={<Button variant={"ghost"} fullWidth onClick={()=> addLine(product)}>Ajouter au panier</Button>}
-                    />
-                ))}
-            </section>
-            {/* /Produits */}
-
-            {/* Panier */}
-            <section className="w-full lg:w-1/3 space-y-8">
+            <section>
                 <h2 className="text-lg font-semibold mb-8 tracking-tight">Mon Panier</h2>
                 {lines.map((line) => (
                     <ProductCartLine
@@ -50,17 +33,20 @@ const Cart = () => {
                 ))}
 
                 <div className="flex justify-between items-center">
+
                     <div className="text-lg font-semibold">Total</div>
                     <div className="text-lg font-semibold">
                         <FormattedPrice price={lines.reduce((acc, line) => acc + line.product.price * line.qty, 0)}/>
                     </div>
                 </div>
+                <br/>
 
                 <Button fullWidth>Commander</Button>
+
                 <Button fullWidth variant="ghost" onClick={() => clearCart()}>Vider le panier</Button>
+
             </section>
-            {/* /Panier */}
-        </SectionContainer>
+
     )
 }
 
