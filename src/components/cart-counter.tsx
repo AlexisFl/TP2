@@ -3,12 +3,12 @@ import useStore from "../hooks/use-cart";
 
 const CartCounter = () => {
 
-    const lines = useStore((state) => state.lines);
+    const count = useStore((state) => state.count);
 
     console.log("rendu counter")
     return (
         <div>
-            <p>{lines.length}</p>
+            {count}
         </div>
     )
 }
