@@ -1,3 +1,4 @@
+"use client";
 import {
   BreadCrumbs,
   Button,
@@ -11,10 +12,13 @@ import {
 import { NextPageProps } from "../../../types";
 import { PRODUCTS_CATEGORY_DATA } from "tp-kit/data";
 import { Metadata } from "next";
+import useStore from "../../../hooks/use-cart";
 import {
   ProductAttribute,
   ProductAttributesTable,
 } from "../../../components/product-attributes-table";
+import {addLine} from "../../../hooks/use-cart";
+import {useEffect} from "react";
 const product = {
   ...PRODUCTS_CATEGORY_DATA[0].products[0],
   category: {
@@ -49,6 +53,12 @@ const productAttributes: ProductAttribute[] = [
 ];
 
 export default async function ProductPage({ params }: NextPageProps<Props>) {
+  const lines = useStore((state) => state.lines);
+
+  /*useEffect(() => {
+    console.log('Les lignes du panier ont été mises à jour :', lines);
+  }, [lines]);*/
+
   return (
     <SectionContainer wrapperClassName="max-w-5xl">
       <BreadCrumbs
@@ -118,13 +128,14 @@ export default async function ProductPage({ params }: NextPageProps<Props>) {
               <ProductCardLayout
                 product={product}
                 button={
-                  <Button variant="ghost" className="flex-1 !py-4">
+                  <Button variant="ghost" className="flex-1 !py-4" onClick={() => addLine(product)}>
                     Ajouter au panier
                   </Button>
                 }
               />
             )}
           </ProductGridLayout>
+          <pre>{JSON.stringify(lines, null, 2)}</pre>
         </div>
       </section>
       {/* /Related products */}

@@ -3,10 +3,13 @@ import { PRODUCTS_CATEGORY_DATA } from "tp-kit/data";
 import { Button, ProductCardLayout, SectionContainer } from "tp-kit/components";
 import {ProductCartLine} from "tp-kit/components/products/product-cart-line";
 import {FormattedPrice} from "tp-kit/components/data-display";
+import useStore, {addLine} from "../../hooks/use-cart";
 const products = PRODUCTS_CATEGORY_DATA[0].products.slice(0, 3);
 
 
 export default function DevCartPage() {
+    const lines = useStore((state) => state.lines);
+
     return (
         <SectionContainer
             className="py-36"
@@ -18,7 +21,7 @@ export default function DevCartPage() {
                     <ProductCardLayout
                         key={product.id}
                         product={product}
-                        button={<Button variant={"ghost"} fullWidth>Ajouter au panier</Button>}
+                        button={<Button variant={"ghost"} fullWidth onClick={()=> addLine(product)}>Ajouter au panier</Button>}
                     />
                 ))}
             </section>
@@ -27,6 +30,7 @@ export default function DevCartPage() {
             {/* Panier */}
             <section className="w-full lg:w-1/3 space-y-8">
                 <h2 className="text-lg font-semibold mb-8 tracking-tight">Mon Panier</h2>
+                <pre>{JSON.stringify(lines, null, 2)}</pre>
                 <div className="text-lg font-semibold">
 
                         <ProductCartLine

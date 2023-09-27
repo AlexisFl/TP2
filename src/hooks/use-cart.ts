@@ -1,3 +1,4 @@
+
 import { create } from 'zustand';
 import {CartData, ProductLineData} from "../types";
 import {ProductData} from "tp-kit/types";
@@ -5,6 +6,8 @@ import {ProductData} from "tp-kit/types";
 const useStore = create<CartData>((set) => ({
     lines: [],
 }));
+
+export default useStore;
 
 // [...]
 
