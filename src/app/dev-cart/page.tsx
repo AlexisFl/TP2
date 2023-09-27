@@ -5,12 +5,16 @@ import {ProductCartLine} from "tp-kit/components/products/product-cart-line";
 import {FormattedPrice} from "tp-kit/components/data-display";
 import useStore, {addLine, clearCart, removeLine, updateLine} from "../../hooks/use-cart";
 import Cart from "../../components/cart";
+import CartCounter from "../../components/cart-counter";
 const products = PRODUCTS_CATEGORY_DATA[0].products.slice(0, 3);
 
 
 export default function DevCartPage() {
 
     return (
-        <Cart/>
+        <div>
+            <CartCounter/>
+            <Cart/>
+        </div>
     );
 }
